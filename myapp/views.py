@@ -1,5 +1,6 @@
 from django.shortcuts import render , HttpResponse
 from myapp.models import Task
+
 # Create your views here.
 def home(request):
     context = {'success' : False}
