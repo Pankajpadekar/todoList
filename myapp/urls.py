@@ -20,5 +20,7 @@ from myapp import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('tasks', views.tasks, name='tasks')
+    path('tasks', views.tasks, name='tasks'),
+    path('tasks/edit/<int:pk>/' , views.edit_task, name='edit_task'),
+    path('tasks/delete/<int:pk>/' , views.delete_task, name='delete_task')
 ]

@@ -21,10 +21,23 @@ def tasks(request):
     context = {'tasks': all_Tasks}
     return render(request, 'tasks.html' , context)
 
-def edit_view(request, pk):
-    item = get_object_or_404(Task, pk=pk)
-    # Handle form submission for editing the item
-    return render(request , '')
+def edit_task(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    if request.method == 'POST':
+        task_Title = request.POST['title']
+        task_Desc = request.POST['desc']
+        task_status = request.POST.get('status') == 'active' # Assuming you have a dropdown with options 'active' and 'inactive
+        task.save()
+        return redirect('tasks')
+    return render(request, 'edit_task.html' , {'task' : task})
+
+
+def delete_task(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.delete()
+    return redirect('tasks')
+
+
 
 
 
